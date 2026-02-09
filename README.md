@@ -47,6 +47,7 @@ managedNodeGroups:
     desiredCapacity: 2
     iam:
       instanceRoleARN: arn:aws:iam::SUA_ACCOUNT_ID:role/LabRole
+    
 Execute a criação (Tempo estimado: 15-20 min):
 
 eksctl create cluster -f cluster.yaml
