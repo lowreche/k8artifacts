@@ -34,7 +34,10 @@ eksctl create cluster -f cluster.yaml
 
 # 📦 3. Mão na Massa: Artefatos K8s
 Deployment e Service (v1)
+
 Crie o arquivo app.yaml para subir nossa aplicação inicial (utilize o arquivo deste repositório)
+
+nano app.yaml
 
 # Comandos:
 
