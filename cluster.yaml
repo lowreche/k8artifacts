@@ -1,0 +1,17 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: live-fiap
+  region: us-east-1
+  version: "1.30"
+
+iam:
+  serviceRoleARN: arn:aws:iam::SUA_ACCOUNT_ID:role/LabRole
+
+managedNodeGroups:
+  - name: nodes
+    instanceType: t3.medium
+    desiredCapacity: 2
+    iam:
+      instanceRoleARN: arn:aws:iam::SUA_ACCOUNT_ID:role/LabRole
