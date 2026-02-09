@@ -26,27 +26,7 @@ Crie o arquivo cluster.yaml:
 
 nano cluster.yaml
 
-Cole o conteúdo abaixo (Substitua o Account ID pelo Account ID da sua conta AWS):
-
-YAML
-
-apiVersion: eksctl.io/v1alpha5
-kind: ClusterConfig
-
-metadata:
-  name: live-fiap
-  region: us-east-1
-  version: "1.30"
-
-iam:
-  serviceRoleARN: arn:aws:iam::SUA_ACCOUNT_ID:role/LabRole
-
-managedNodeGroups:
-  - name: nodes
-    instanceType: t3.medium
-    desiredCapacity: 2
-    iam:
-      instanceRoleARN: arn:aws:iam::SUA_ACCOUNT_ID:role/LabRole
+Utilize o conteúdo do arquivo cluster.yaml deste repositório (Substitua o Account ID pelo Account ID da sua conta AWS):
     
 Execute a criação (Tempo estimado: 15-20 min):
 
@@ -54,43 +34,9 @@ eksctl create cluster -f cluster.yaml
 
 # 📦 3. Mão na Massa: Artefatos K8s
 Deployment e Service (v1)
-Crie o arquivo app.yaml para subir nossa aplicação inicial:
+Crie o arquivo app.yaml para subir nossa aplicação inicial (utilize o arquivo deste repositório)
 
-YAML
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: web-server
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: fiap-aula
-  template:
-    metadata:
-      labels:
-        app: fiap-aula
-    spec:
-      containers:
-      - name: nginx-container
-        image: nginx:1.24
-        ports:
-        - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: web-service
-spec:
-  selector:
-    app: fiap-aula
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: LoadBalancer
-Comandos:
+# Comandos:
 
 # Aplicar artefatos
 kubectl apply -f app.yaml
